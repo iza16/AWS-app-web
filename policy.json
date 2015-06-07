@@ -1,0 +1,13 @@
+{	"expiration" : {"day":1},
+	"conditions": 
+	[
+		["starts-with", "$key", "pawel.czubak/"],
+    	{"bucket": "lab4-weeia"}, 
+    	{"acl": "public-read"}, 
+		["starts-with", "$x-amz-meta-uploader", ""],
+		["starts-with", "$x-amz-meta-ip", ""],
+		["starts-with", "$uploader", ""],
+		{"success_action_redirect": "http://54.69.128.198:8080/bucketcr"},
+    	["content-length-range", 0, 1048576]
+    ]   
+}
