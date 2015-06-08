@@ -52,10 +52,12 @@ var task =  function(request, callback){
 			simpledb.getAttributes(paramsXXXXz, function(err, datacc) {
 				if (err) {
 					console.log(err, err.stack); // an error occurred
+					callback(null, "Nie ma takiego pliku.");
 				}
 				else {  
 					//poszukuje pliku i sprawdza czy był już przetworzony 
-					if(datacc.Attributes[0].Value == "yes"){
+					
+					if(datacc.Attributes && datacc.Attributes[0].Value == "yes"){
 						console.log('----------------->Znalazlem przetworzony plik');
 						callback(null, {template: UPLOAD_TEMPLATE, params:{fileName:key.substring(10), bucket:"czubak"}});
 					}else{

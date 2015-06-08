@@ -13,12 +13,14 @@ var simpledb = new AWS.SimpleDB();
 //funkcja która zostanie wykonana po wejściu na stronę 
 //request dane o zapytaniu, callback funkcja zwrotna zwracająca kod html
 var task =  function(request, callback){
+	
+	
 	//$_GET['bucket'], $_GET['key'], $_GET['etag']
 	var key =  request.query.key;
 	
 	//parametr do wybrania danych z bazy -- taki select ;p
 	var paramsXXXX = {
-		DomainName: 'czubakd1', //required 
+		DomainName: 'czubakProjState', //required 
 		ItemName: 'ITEM001', // required 
 		AttributeNames: [
 			key,
@@ -30,16 +32,16 @@ var task =  function(request, callback){
 			console.log(err, err.stack); // an error occurred
 		}
 		else {     
-			console.log(data);           // successful response
+			//console.log(data);           // successful response
+			console.log("Ajax pyta");           // successful response
 			if(data.Attributes){
 				callback(null,data.Attributes[0].Value);
 			}else{
-				callback(null,"Still not...");
+				callback(null,"no");
 			}
 			
 		}
 	});	
-
 	
     //odczytanie zawartości pliku
 	/*fs.readFile('/home/bitnami/awslab4/actions/files/dane.s', 'utf8', function (err,data) {

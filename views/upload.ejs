@@ -20,7 +20,7 @@
 						}
 					}
 				}
-				xmlhttp.open("GET","processinfo?key=toProcess/'+key+'");
+				xmlhttp.open("GET","processinfo/?key=toProcess/<%=fileName%>");
 				xmlhttp.send();
 				t = setTimeout("loadShortCut()", 5000);
 				document.getElementById("waiting").innerHTML = document.getElementById("waiting").innerHTML + ' .';
