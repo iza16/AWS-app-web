@@ -4,45 +4,59 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />	
 	</head>
 	<body>
-		<nav class="navbar">
-			
+		<nav class="navbar">	
 		</nav>
 		<div class="container">
 		<section id="section1" class="panel panel-default">
-
 			<div class="panel-heading">
 			<div class="container">
-	    		<h3 class="panel-title">POSTing a file to Amazon S3</h3>
+	    		<h3 class="panel-title">Wrzuć plik graficzny do przetworzenia</h3>
 	    		</div>
 		  	</div>
 	  		<div class="panel-body">
-	  <form action="https://<%=bucket%>.s3.amazonaws.com/" method="POST" id="sign-up-form" class="form-horizontal" enctype="multipart/form-data">	
-	
-	<div class="container">
-	<% fields.forEach(function(elem){ %>
-	  <input type="hidden" name="<%= elem.name  %>" value="<%=elem.value %>"/>
-		<%}); %> 
-	   
-	<div class="col-xs-5">
-	<div class="form-group">
-    	<label for="exampleInputFile">File input</label>
-    	<input type="file" name="file">
-    	<p class="help-block">File will be send to the bucket <%=bucket%> </p>
-  </div>
-	
-  	
-	</div>
-	</div>
-	
-	<div class="container">
-	<div class="col-xs-3">
-	<input type="submit" class="btn  btn-primary btn-block" value="Confirm"/>
-	</div>
-	</div>
-</form>
+				<form action="https://<%=bucket%>.s3.amazonaws.com/" method="POST" id="sign-up-form" class="form-horizontal" enctype="multipart/form-data">	
+					<div class="container">
+						<% fields.forEach(function(elem){ %>
+							<input type="hidden" name="<%= elem.name  %>" value="<%=elem.value %>"/>
+						<%}); %> 
+						<div class="col-xs-5">
+							<div class="form-group">
+								<label for="exampleInputFile">File input</label>
+								<input type="file" name="file">
+								<p class="help-block">File will be send to the bucket <%=bucket%> </p>
+							</div>
+						</div>
+					</div>
+					<div class="container">
+						<div class="col-xs-3">
+							<input type="submit" class="btn  btn-primary btn-block" value="Confirm"/>
+						</div>
+					</div>
+				</form>
 	  		</div>
 			<footer class="panel-footer">
-				
+			</footer>
+		</section>
+		
+		<section id="section1" class="panel panel-default">
+			<div class="panel-heading">
+			<div class="container">
+	    		<h3 class="panel-title">Lista plików już przetworzonych</h3>
+	    		</div>
+		  	</div>
+	  		<div class="panel-body">
+				<div class="container">
+					<div class="col-xs-5">
+						<% fileList.forEach(function(elem){ %>
+							<a href="">stary</a> |  
+							<a href="">nowy</a>
+							<%= elem.nazwa  %><br>
+						<%}); %> 
+					</div>
+				</div>
+	  		</div>
+			<footer class="panel-footer">
+				Created by Pawel Czubak
 			</footer>
 		</section>
 	</div>		
