@@ -6,8 +6,9 @@ var AWS_CONFIG_FILE = "config.json";
 var POLICY_FILE = "policy.json";
 var INDEX_TEMPLATE = "index.ejs";
 var AWS = require("aws-sdk");
+AWS.config.loadFromPath('./config.json');
 var s3 = new AWS.S3();
-//AWS.config.loadFromPath('./config.json');
+
 
 var simpledb = new AWS.SimpleDB();
 
