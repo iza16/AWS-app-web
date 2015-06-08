@@ -48,8 +48,8 @@
 				<div class="container">
 					<div class="col-xs-5">
 						<% fileList.forEach(function(elem){ %>
-							<a href="">stary</a> |  
-							<a href="">nowy</a>
+							<a href="http://<%=bucket%>.s3.amazonaws.com/toProcess/<%=elem.nazwa%>">stary</a> |  
+							<a href="http://<%=bucket%>.s3.amazonaws.com/processed/<%=elem.nazwa%>">nowy</a>
 							<%= elem.nazwa  %><br>
 						<%}); %> 
 					</div>

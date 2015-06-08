@@ -11,11 +11,13 @@
 				xmlhttp.onreadystatechange=function(){
 					if (xmlhttp.readyState==4 && xmlhttp.status==200){
 						if (xmlhttp.responseText.length){
-							document.getElementById("test2").innerHTML = xmlhttp.responseText;
+							//document.getElementById("test2").innerHTML = xmlhttp.responseText;
 							if (xmlhttp.responseText == 'yes'){
 								document.getElementById("newFile").style.display = "block";
 								clearTimeout(t);
 								document.getElementById("waiting").innerHTML = 'Stan przetwarzenia: Ukończono';
+								
+								document.getElementById("test2").innerHTML = '<img style="border:5px double black; padding:10px; margin:5px;" src="http://<%=bucket%>.s3.amazonaws.com/toProcess/<%=fileName%>" height="100"><img style="border:5px double black; padding:10px; margin:5px;" src="http://<%=bucket%>.s3.amazonaws.com/processed/<%=fileName%>" height="100">';
 							}
 						}
 					}
