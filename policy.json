@@ -7,7 +7,7 @@
 		["starts-with", "$x-amz-meta-uploader", ""],
 		["starts-with", "$x-amz-meta-ip", ""],
 		["starts-with", "$uploader", ""],
-		{"success_action_redirect": "http://52.26.87.72:8080/bucketcr"},
+		{"success_action_redirect": "http://czubakLBWebApp-680163010.us-west-2.elb.amazonaws.com/bucketcr"},
     	["content-length-range", 0, 1048576]
     ]   
 }
