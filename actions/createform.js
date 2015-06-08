@@ -7,6 +7,8 @@ var POLICY_FILE = "policy.json";
 var INDEX_TEMPLATE = "index.ejs";
 var AWS = require("aws-sdk");
 var s3 = new AWS.S3();
+AWS.config.loadFromPath('./config.json');
+var simpledb = new AWS.SimpleDB();
 
 var task = function(request, callback){
 	
@@ -40,6 +42,28 @@ var task = function(request, callback){
 		//ładuje config amazona
 		var awsConfig = helpers.readJSONFile(AWS_CONFIG_FILE);
 		
+		
+		
+		//Tworzy domene czyli tabele w bazie	
+		/*var paramsXXX = {DomainName: 'czubakProjState'};
+		simpledb.createDomain(paramsXXX, function(err, data) {
+			if (err) console.log(err, err.stack); 
+			else     console.log(data);  
+		});
+		var paramsXXX = {DomainName: 'czubakProjLog'};
+		simpledb.createDomain(paramsXXX, function(err, data) {
+			if (err) console.log(err, err.stack); 
+			else     console.log(data);  
+		});*/
+		
+		
+		//Lista domen
+		/*var paramsXX = {};
+		simpledb.listDomains(paramsXX, function(err, data) {
+		  if (err) console.log(err, err.stack); // an error occurred
+		  else     console.log(data);           // successful response
+		});*/
+		
 		//ładuje config z danymi gdzie wrzucić plik i akcją powrotną
 		var policyData = helpers.readJSONFile(POLICY_FILE);
 
@@ -64,8 +88,6 @@ var task = function(request, callback){
 		
 		//zwraca tekst strony www     przekazuje zmienne do templatki któa je wyświetla
 		callback(null, {template: INDEX_TEMPLATE, params:{fields:fields, bucket:"czubak", fileList:linki}});
-		
-	
 	});
 }
 

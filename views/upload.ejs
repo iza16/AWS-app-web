@@ -1,0 +1,54 @@
+<html>
+	<head>
+		<link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css" rel="stylesheet">	
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />	
+	</head>
+	<body>
+		<script>
+			function loadShortCut(){
+				var xmlhttp;
+				xmlhttp=new XMLHttpRequest();
+				xmlhttp.onreadystatechange=function(){
+					if (xmlhttp.readyState==4 && xmlhttp.status==200){
+						if (xmlhttp.responseText.length){
+							document.getElementById("test2").innerHTML = xmlhttp.responseText;
+							if (xmlhttp.responseText == 'yes'){
+								document.getElementById("newFile").style.display = "block";
+								clearTimeout(t);
+								document.getElementById("waiting").innerHTML = 'Stan przetwarzenia: Ukończono';
+							}
+						}
+					}
+				}
+				xmlhttp.open("GET","processinfo?key=toProcess/'+key+'");
+				xmlhttp.send();
+				t = setTimeout("loadShortCut()", 5000);
+				document.getElementById("waiting").innerHTML = document.getElementById("waiting").innerHTML + ' .';
+			}
+			loadShortCut();
+		</script>			
+
+		<nav class="navbar">	
+		</nav>
+		<div class="container">
+			<section id="section1" class="panel panel-default">
+				<div class="panel-heading">
+				<div class="container">
+					<h3 class="panel-title">Plik <strong><%=fileName%></strong> został przesłany poprawnie</h3>
+					</div>
+				</div>
+				<div class="panel-body">
+					<div id="waiting">Stan przetworzenia: Oczekiwanie . . .</div><br>
+					<br>
+					<div id="oldFile"><a href='http://<%=bucket%>.s3.amazonaws.com/toProcess/<%=fileName%>'>Plik przed przetworzeniem</a></div>
+					<div id="newFile" style="display:none"><a href='http://<%=bucket%>.s3.amazonaws.com/processed/<%=fileName%>'>Plik po przetworzeniu</a></div>
+					<br>
+					<div id="test2"></div>
+				</div>
+				<footer class="panel-footer">
+					Created by Pawel Czubak
+				</footer>
+			</section>
+		</div>		
+	</body>
+</html>
