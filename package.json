@@ -1,18 +1,29 @@
 {
   "name": "awslab4",
   "version": "0.0.1",
-  "description": "",
+  "description": "AWS application nodejs, połączona z travisem, wyświetla pliki z S3 oraz wrzuca pliki na S3, dodaje dane do kolejki SQS oraz simpleDB",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
-  "author": "Radek Adamus <adamusr@gmail.com> (https://github.com/radamus/)",
-  "license": "MIT",
+  "author": "Paweł Czubak",
+  "license": "BSD-2-Clause",
   "dependencies": {
     "webs-weeia": "0.0.2",
     "ejs": "^1.0.0",
     "moment": "^2.5.1",
     "async": "^0.2.10",
     "aws-sdk": "^2.0.0-rc13"
+  },
+  "directories": {
+    "test": "test"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pawel33317/AWS-app-web.git"
+  },
+  "bugs": {
+    "url": "https://github.com/pawel33317/AWS-app-web/issues"
   }
 }
