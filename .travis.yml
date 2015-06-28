@@ -4,9 +4,9 @@ deploy:
   provider: s3
   access_key_id: AKIAIDPKVI45XOOBATFA
   secret_access_key:
-    secure: fsSvEQ0Z/+UCiNKCKKFFZr8F+nJkVUm+AmtCD52IBjzI1jW91FmekqW4jbIRnAgjZpUJLJ/KxJm/jWgJC9e+SXayGd+jSV3p69Jm9YCd+m0fXsAi9X2qDSkGaka3NNy2jwfR/JbjSBoRup7GpifjbTdEbrnJJht4blhyvD7ou6A=
+    secure: Gg+jqayOcNheyX2/5J8k8l8+vUZNBruHukEG/rEfbjOnknyDKjX/9gykmHY/9JW693wuASYKDdCr9w0p5mpRFjQWyQULC7t05WWmTpkW4Kt08jo7zzOGIGeWiyNO7G/No1e4DwX/vZBbNk+MJ/wx1Y/3iAdB4Oq6fpJBYsgazngDNNsIPf1Vh2Z1XjKD79oGPKT4BzGNgjWbfo+lW2EkilNrbR0qi+dZz/WZToWXlcuw0wQ0r4Cvhn3e3hFbeaTQeBn7BrT9BiBoHK0glEVwmZB9jLgrOkg87u1z0iXo2mSNqZz3q+WDyl40kgrIywToIs0oXLWEMrajmI9YIDsCOnj6TRPoAAaD6LuzMxujtqPn9gFX8ZzbJ+1amtg53ey1JMkMSZxcmH9asc0J/WHqNLqKhTi9L1aNyDelhm40V/zJw42pM0n5hB1AbbL4aR8L1DeSV3jSXWMQCgLAdWR+h++lsiweED/kWE5oARgKC8xpCzoz3cZAm3Twk4+UVSrxjAwtsvjninSARxc/vKj2xLGONJjVcChsxAfLU/BvGcMLC6UebTD5QCcHav2saxG8BgGt9dWX3nPKbcwRZ2Sn0s5s1f5b70gaPW0Kapp+LYeN796SdV/j3XClOGs/4IJdIpCk/TpEkP0wQLcAjc9kId6M1WGsuR1s+g2RpQSAc7w=
   bucket: borowiecka
   upload-dir: awsWebApp
-  acl: 'public-read-write'
+  acl: public-read-write
   on:
     repo: iza16/AWS-app-web
