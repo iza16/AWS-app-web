@@ -7,7 +7,6 @@ var ACTIONS_CONFIG_FILE = "actions.json";
 //port na którym działa aplikacja
 var PORT = 8080;
 
-//dddd
 //ustawia strony względem patcha
 var actionsCofig = helpers.readJSONFile(ACTIONS_CONFIG_FILE);
 actionsCofig.forEach(function(elem){
