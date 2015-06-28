@@ -134,7 +134,7 @@ var task =  function(request, callback){
 											
 											//Funkcja zwracająca kod HTML wyświetlany na ekranie
 											//w templatce jest zapytanie ajaksowe
-											callback(null, {template: UPLOAD_TEMPLATE, params:{fileName:key.substring(10), bucket:"czubak"}});
+											callback(null, {template: UPLOAD_TEMPLATE, params:{fileName:key.substring(10), bucket:"borowiecka"}});
 											//etag: +etag
 											//IP: +data.Metadata.ip
 											//Uploader: +data.Metadata.uploader

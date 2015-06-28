@@ -1,12 +1,12 @@
 {
-  "name": "awslab4",
+  "name": "projektAWS",
   "version": "0.0.1",
-  "description": "AWS application nodejs, połączona z travisem, wyświetla pliki z S3 oraz wrzuca pliki na S3, dodaje dane do kolejki SQS oraz simpleDB",
+  "description": "AWS web",
   "main": "app.js",
   "scripts": {
     "test": "mocha"
   },
-  "author": "Paweł Czubak",
+  "author": "Izabela Borowiecka",
   "license": "BSD-2-Clause",
   "dependencies": {
     "webs-weeia": "0.0.2",
@@ -21,9 +21,9 @@
   "devDependencies": {},
   "repository": {
     "type": "git",
-    "url": "https://github.com/pawel33317/AWS-app-web.git"
+    "url": "https://github.com/iza16/AWS-app-web"
   },
   "bugs": {
-    "url": "https://github.com/pawel33317/AWS-app-web/issues"
+    "url": "https://github.com/iza16/AWS-app-web/issues"
   }
 }

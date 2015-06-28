@@ -2,11 +2,11 @@ language: node_js
 before_install: npm install -g mocha
 deploy:
   provider: s3
-  access_key_id: AKIAI7RMLCOJV22L2XNA
+  access_key_id: AKIAIDPKVI45XOOBATFA
   secret_access_key:
-    secure: tAjflO3WRE00+xioZjd0lHJ8VizJVZphLAHQdgDCjmCT9APEgiu37iu9Oc1Gt4vmzENFCqIjCvSG/nk6cpZVgy7X82p+79NZT7/zpUDSZZ961LUh9nihbKgGLXOwukgjKJhff25NUHoyrbwjKIrkOzil3DmEyNXgZBQ9js9VFCyRBY9x/j7R5F48Mfvw7nubR6loBjJeEXZEfAxK7gZu5u0bsUIj5ItvqD14yW7ChxbLjmpHb3XUfTVW4b9wa/D0m1GXBiTcQWQDOy/U9NCKRYfiZVxEYgQkaYDhTEOb2dc7FT+WW+tlz2cblwLK85Q/CKwsHIQnB5gqy8kpIz1jeibxvu4D+3YX8TKrJCkSVxI1yDVueCWXJsKsOZNsOOAJLgzbYIPz0Kv+UrxpUlvV2AkLPrnZ4FaKd9BrPh3dwif9MqoL4b6yv5OQDkvWEnKvj3UO7k/zZ6NmgnBFNnFkGGF1T+Go1ECHAk7ChWjlpSI8Vtl1QVTYGRt8oUluKI69nejCBlr8eK9LVCSK6CkpFmxte+o/+zFbnOA5cdq4TMcVVnM/62hzyvd6X3RwZ3zUiV0afpT/fG/kbQrwIBbU7kR5ZTPR3DBte/6tQH+RNZ+hvHEHatSeEDDLbvdpqwYA8R3H1Szh6v9nk/NSXkb1vmjnv6ZNYA54bW3WC8Sp7+E=
-  bucket: czubak
-  upload-dir: appWeb
-  acl: public_read
+    secure: fsSvEQ0Z/+UCiNKCKKFFZr8F+nJkVUm+AmtCD52IBjzI1jW91FmekqW4jbIRnAgjZpUJLJ/KxJm/jWgJC9e+SXayGd+jSV3p69Jm9YCd+m0fXsAi9X2qDSkGaka3NNy2jwfR/JbjSBoRup7GpifjbTdEbrnJJht4blhyvD7ou6A=
+  bucket: borowiecka
+  upload-dir: awsWebApp
+  acl: 'public-read-write'
   on:
-    repo: pawel33317/AWS-app-web
+    repo: iza16/AWS-app-web

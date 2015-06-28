@@ -1,6 +1,6 @@
 var AWS = require("aws-sdk");
 var os = require("os");
-fs = require('fs');
+var fs = require('fs');
 //accessKeyId ... klucze do amazona 
 AWS.config.loadFromPath('./config.json');
 

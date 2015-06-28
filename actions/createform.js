@@ -16,8 +16,8 @@ var task = function(request, callback){
 	
 	//obiekt dzięki któemu będziemy listować plili z bucketu czubak z katalogu toProcess
 	var params = {
-		Bucket: 'czubak',
-		Prefix: 'toProcess'
+		Bucket: 'borowiecka',
+		Prefix: 'obrazki'
 	};
 	s3.listObjects(params, function(err, data) {
 		if (err) console.log(err, err.stack);
@@ -29,7 +29,7 @@ var task = function(request, callback){
 		//przelatujemy przez każdy plik z bucketu
 		for(var i in data.Contents) {
 			//jeżeli nie jest to nazwa bucketu tylko plik
-			if (data.Contents[i].Key != "toProcess/"){
+			if (data.Contents[i].Key != "obrazki/"){
 				//dopisz do listy do wyświetlenia
 				linki.push( {nazwa: data.Contents[i].Key.substring(10)});
 			}
@@ -75,11 +75,11 @@ var task = function(request, callback){
 		var s3Form = new S3Form(policy);
 		var fields = s3Form.generateS3FormFields();
 		//tag dla pliku wrzucającego (widoczny w AWS console)
-		fields.push( {name : 'x-amz-meta-uploader', value : 'pawel.czubak'});
+		fields.push( {name : 'x-amz-meta-uploader', value : 'Izabela Borowiecka'});
 		//tag dla pliku ip (widoczny w AWS console)
 		fields.push( {name : 'x-amz-meta-ip', value : ipAddress});
 		//zbędne
-		fields.push( {name : 'uploader', value : 'pawel.czubak'});
+		fields.push( {name : 'uploader', value : 'Izabela Borowiecka'});
 		//dodaje niewidoczne pola potrzebne do uploadu
 		var fieldsSecret=s3Form.addS3CredientalsFields(fields, awsConfig);
 		
@@ -89,7 +89,7 @@ var task = function(request, callback){
 		//	callback(null, {template: INDEX_TEMPLATE, params:{fields:fields, bucket:""}});
 		
 		//zwraca tekst strony www     przekazuje zmienne do templatki któa je wyświetla
-		callback(null, {template: INDEX_TEMPLATE, params:{fields:fields, bucket:"czubak", fileList:linki}});
+		callback(null, {template: INDEX_TEMPLATE, params:{fields:fields, bucket:"borowiecka", fileList:linki}});
 	});
 }
 
