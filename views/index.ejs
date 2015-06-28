@@ -41,23 +41,20 @@
 		<section id="section1" class="panel panel-default">
 			<div class="panel-heading">
 			<div class="container">
-	    		<h3 class="panel-title">Lista plików już przetworzonych</h3>
+	    		<h3 class="panel-title">Lista plików na s3</h3>
 	    		</div>
 		  	</div>
 	  		<div class="panel-body">
 				<div class="container">
 					<div class="col-xs-5">
 						<% fileList.forEach(function(elem){ %>
-							<a href="http://<%=bucket%>.s3.amazonaws.com/obrazki/<%=elem.nazwa%>">stary</a> |  
-							<a href="http://<%=bucket%>.s3.amazonaws.com/przetworzoneObrazki/<%=elem.nazwa%>">nowy</a>
+							<a href="http://<%=bucket%>.s3.amazonaws.com/obrazki/<%=elem.nazwa%>">nieprzetworzony</a> |  
+							<a href="http://<%=bucket%>.s3.amazonaws.com/przetworzoneObrazki/<%=elem.nazwa%>">przetworzony</a>
 							<%= elem.nazwa  %><br>
 						<%}); %> 
 					</div>
 				</div>
 	  		</div>
-			<footer class="panel-footer">
-				Created by Izabela Borowiecka
-			</footer>
 		</section>
 	</div>		
 	</body>
