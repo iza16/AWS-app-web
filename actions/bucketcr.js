@@ -1,4 +1,4 @@
-var AWS = require("aws-sdk");
+/*var AWS = require("aws-sdk");
 var os = require("os");
 var crypto = require('crypto');
 //zawiera funkcje pomocnicze generowania skrótów robienia z jonson obiektu ...
@@ -151,3 +151,4 @@ var task =  function(request, callback){
 	});
 }
 exports.action = task
+*/

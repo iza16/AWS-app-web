@@ -29,7 +29,7 @@
 					</div>
 					<div class="container">
 						<div class="col-xs-3">
-							<input type="submit" class="btn  btn-primary btn-block" value="Confirm"/>
+							<input action=/createform type="submit" class="btn  btn-primary btn-block" value="Wrzuć"/>
 						</div>
 					</div>
 				</form>
@@ -41,15 +41,15 @@
 		<section id="section1" class="panel panel-default">
 			<div class="panel-heading">
 			<div class="container">
-	    		<h3 class="panel-title">Lista plików na s3</h3>
+	    		<h3 class="panel-title">Lista wrzuconych plików</h3>
 	    		</div>
 		  	</div>
 	  		<div class="panel-body">
 				<div class="container">
 					<div class="col-xs-5">
 						<% fileList.forEach(function(elem){ %>
-							<a href="http://<%=bucket%>.s3.amazonaws.com/obrazki/<%=elem.nazwa%>">nieprzetworzony</a> |  
-							<a href="http://<%=bucket%>.s3.amazonaws.com/przetworzoneObrazki/<%=elem.nazwa%>">przetworzony</a>
+							<a href="http://<%=bucket%>.s3.amazonaws.com/borowiecka/obrazki/<%=elem.nazwa%>">nieprzetworzony</a> |  
+							<a href="http://<%=bucket%>.s3.amazonaws.com/borowiecka/przetworzoneObrazki/<%=elem.nazwa%>">przetworzony</a>
 							<%= elem.nazwa  %><br>
 						<%}); %> 
 					</div>

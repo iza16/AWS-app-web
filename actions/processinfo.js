@@ -20,7 +20,7 @@ var task =  function(request, callback){
 	
 	//parametr do wybrania danych z bazy -- taki select ;p
 	var paramsXXXX = {
-		DomainName: 'czubakProjState', //required 
+		DomainName: 'borowieckaStatus', //required 
 		ItemName: 'ITEM001', // required 
 		AttributeNames: [
 			key,
@@ -33,7 +33,7 @@ var task =  function(request, callback){
 		}
 		else {     
 			//console.log(data);           // successful response
-			console.log("Ajax pyta");           // successful response
+			console.log("OK");           // successful response
 			if(data.Attributes){
 				callback(null,data.Attributes[0].Value);
 			}else{
@@ -43,14 +43,5 @@ var task =  function(request, callback){
 		}
 	});	
 	
-    //odczytanie zawartości pliku
-	/*fs.readFile('/home/bitnami/awslab4/actions/files/dane.s', 'utf8', function (err,data) {
-		if (err) {
-			return console.log(err);
-		}
-			//Funkcja zwracająca kod HTML wyświetlany na ekranie
-			callback(null,data);	
-			//console.log(data);
-	});*/
 }
 exports.action = task

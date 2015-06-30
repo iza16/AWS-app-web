@@ -17,15 +17,15 @@ var task =  function(request, callback){
 	//$_GET['bucket'], $_GET['key'], $_GET['etag']
 	var key =  request.query.key;
 	
-	//parametr do wybrania danych z bazy -- taki select ;p
-	var paramsXXXX = {
-		DomainName: 'czubakd1', //required 
+	//parametr do wybrania danych z bazy
+	var params1 = {
+		DomainName: 'borowieckad1', //required 
 		ItemName: 'ITEM001', // required 
 		AttributeNames: [
 			key,
 		],
 	};
-	simpledb.getAttributes(paramsXXXX, function(err, data) {
+	simpledb.getAttributes(params1, function(err, data) {
 		if (err) {
 			console.log(err, err.stack); // an error occurred
 		}

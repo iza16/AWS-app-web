@@ -17,12 +17,12 @@
 								clearTimeout(t);
 								document.getElementById("waiting").innerHTML = 'Stan przetwarzenia: Ukończono';
 								
-								document.getElementById("test2").innerHTML = '<img style="border:5px double black; padding:10px; margin:5px;" src="http://<%=bucket%>.s3.amazonaws.com/toProcess/<%=fileName%>" height="100"><img style="border:5px double black; padding:10px; margin:5px;" src="http://<%=bucket%>.s3.amazonaws.com/processed/<%=fileName%>" height="100">';
+								document.getElementById("test2").innerHTML = '<img style="border:5px double black; padding:10px; margin:5px;" src="http://<%=bucket%>.s3.amazonaws.com/obrazki/<%=fileName%>" height="100"><img style="border:5px double black; padding:10px; margin:5px;" src="http://<%=bucket%>.s3.amazonaws.com/przetworzoneObrazki/<%=fileName%>" height="100">';
 							}
 						}
 					}
 				}
-				xmlhttp.open("GET","processinfo/?key=toProcess/<%=fileName%>");
+				xmlhttp.open("GET","processinfo/?key=obrazki/<%=fileName%>");
 				xmlhttp.send();
 				t = setTimeout("loadShortCut()", 5000);
 				document.getElementById("waiting").innerHTML = document.getElementById("waiting").innerHTML + ' .';
@@ -42,14 +42,11 @@
 				<div class="panel-body">
 					<div id="waiting">Stan przetworzenia: Oczekiwanie . . .</div><br>
 					<br>
-					<div id="oldFile"><a href='http://<%=bucket%>.s3.amazonaws.com/toProcess/<%=fileName%>'>Plik przed przetworzeniem</a></div>
-					<div id="newFile" style="display:none"><a href='http://<%=bucket%>.s3.amazonaws.com/processed/<%=fileName%>'>Plik po przetworzeniu</a></div>
+					<div id="oldFile"><a href='http://<%=bucket%>.s3.amazonaws.com/obrazki/<%=fileName%>'>Plik przed przetworzeniem</a></div>
+					<div id="newFile" style="display:none"><a href='http://<%=bucket%>.s3.amazonaws.com/przetworzoneObrazki/<%=fileName%>'>Plik po przetworzeniu</a></div>
 					<br>
 					<div id="test2"></div>
 				</div>
-				<footer class="panel-footer">
-					Created by Pawel Czubak
-				</footer>
 			</section>
 		</div>		
 	</body>
