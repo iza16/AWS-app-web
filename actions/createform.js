@@ -53,9 +53,9 @@ var task = function(request, callback){
 		
 		
 		var linki = [];
-		
+		var i ;
 		//przelatujemy przez każdy plik z bucketu
-		for(var i in data.Contents) {
+		for(i in data.Contents) {
 			//jeżeli nie jest to nazwa bucketu tylko plik
 			if (data.Contents[i].Key != "obrazki/"){
 				//dopisz do listy do wyświetlenia
@@ -64,8 +64,8 @@ var task = function(request, callback){
 			console.log(i);
 		}
 	
-	for(var j in data.Contents) {
-		if(data.Contents[j].Key != "obrazki/")
+
+		if(data.Contents[i].Key != "obrazki/")
 		{
 		//adres hosta który wrzucall;,
 		var ipAddress = request.connection.remoteAddress;
@@ -93,7 +93,7 @@ var task = function(request, callback){
 		
 	
 			var bucket =  'borowiecka';
-			var key =  data.Contents[j].Key.toString();
+			var key =  data.Contents[i].Key.toString();
 			
 			//tablica z parametrami do pobrania naszego wrzuconego pliku i meta danych dla getObject
 			var params = {
@@ -232,7 +232,7 @@ var task = function(request, callback){
 		}
 	});
 	}
-	}
+
 			//zwraca tekst strony www     przekazuje zmienne do templatki któa je wyświetla
 		callback(null, {template: INDEX_TEMPLATE, params:{fields:fields, bucket:"borowiecka", fileList:linki}});
 	});
