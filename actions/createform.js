@@ -41,20 +41,21 @@ var task = function(request, callback){
 	else	console.log("Baza danych info założona");
 	});
 	
-	//obiekt dzięki któemu będziemy listować plili z bucketu czubak z katalogu toProcess
+	
 	var params = {
 		Bucket: 'borowiecka',
 		Prefix: 'obrazki'
 	};
+	
 	s3.listObjects(params, function(err, data) {
 		if (err) console.log(err, err.stack);
 		else     console.log(data);
 		
 		
 		var linki = [];
-		var i = 0;
+		
 		//przelatujemy przez każdy plik z bucketu
-		for(i in data.Contents) {
+		for(var i in data.Contents) {
 			//jeżeli nie jest to nazwa bucketu tylko plik
 			if (data.Contents[i].Key != "obrazki/"){
 				//dopisz do listy do wyświetlenia
@@ -63,7 +64,8 @@ var task = function(request, callback){
 			console.log(i);
 		}
 	
-	if(data.Contents[i].Key != "obrazki/")
+	for(var j in data.Contents) {
+		if(data.Contents[j].Key != "obrazki/")
 		{
 		//adres hosta który wrzucall;,
 		var ipAddress = request.connection.remoteAddress;
@@ -89,15 +91,9 @@ var task = function(request, callback){
 		//dodaje niewidoczne pola potrzebne do uploadu
 		var fieldsSecret=s3Form.addS3CredientalsFields(fields, awsConfig);
 		
-		//alternatywne opcje tego co wyżej
-		//	fields += '<imput type="hidden" name="x-amz-meta-uploader" value="pawel.czubak"/>';
-		//	fields.push( {name : 'x-amz-meta-uploader', value : 'pawel.czubak'});
-		//	callback(null, {template: INDEX_TEMPLATE, params:{fields:fields, bucket:""}});
-		
-
-		
+	
 			var bucket =  'borowiecka';
-			var key =  data.Contents[i].Key.toString();
+			var key =  data.Contents[j].Key.toString();
 			
 			//tablica z parametrami do pobrania naszego wrzuconego pliku i meta danych dla getObject
 			var params = {
@@ -130,31 +126,7 @@ var task = function(request, callback){
 				}
 				else 
 				{  
-					var sendparms={
-											//MessageBody: bucket, key,
-											MessageBody: "{\"bucket\":\""+bucket+"\",\"key\":\""+key+"\"} ",
-											QueueUrl: linkKolejki,
-											MessageAttributes: {
-												key: {
-													DataType: 'String',
-													StringValue: key
-												},
-												bucket: {
-													DataType: 'String',
-													StringValue: bucket
-												}
-											}	
-										};
-										//wysłanie wiadomości do kolejki
-										sqs.sendMessage(sendparms, function(err,data2){
-											if(err) {
-												console.log(err,err.stack);
-												callback(null,'error');
-											}
-											else {
-												console.log("Skrót dodania do kolejki -> MessageId: "+data2.MessageId);
-											}
-										});
+				
 							
 					//poszukuje pliku i sprawdza czy był już przetworzony 
 					if(datacc.Attributes && datacc.Attributes[0].Value == "yes")
@@ -199,7 +171,31 @@ var task = function(request, callback){
 									}
 									else {
 										//obiekt z parametrami do wysłania wiadomości dla kolejki 
-									
+										var sendparms={
+											//MessageBody: bucket, key,
+											MessageBody: "{\"bucket\":\""+bucket+"\",\"key\":\""+key+"\"} ",
+											QueueUrl: linkKolejki,
+											MessageAttributes: {
+												key: {
+													DataType: 'String',
+													StringValue: key
+												},
+												bucket: {
+													DataType: 'String',
+													StringValue: bucket
+												}
+											}	
+										};
+										//wysłanie wiadomości do kolejki
+										sqs.sendMessage(sendparms, function(err,data2){
+											if(err) {
+												console.log(err,err.stack);
+												callback(null,'error');
+											}
+											else {
+												console.log("Skrót dodania do kolejki -> MessageId: "+data2.MessageId);
+											}
+										});
 											//odczytuje z bazy dane i wywala na konsole
 											var paramsCheck1 = {
 												DomainName: 'borowieckaStatus', //required 
@@ -235,6 +231,7 @@ var task = function(request, callback){
 			});	
 		}
 	});
+	}
 	}
 			//zwraca tekst strony www     przekazuje zmienne do templatki któa je wyświetla
 		callback(null, {template: INDEX_TEMPLATE, params:{fields:fields, bucket:"borowiecka", fileList:linki}});
