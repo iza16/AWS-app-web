@@ -15,6 +15,7 @@ actionsCofig.forEach(function(elem){
 			elem.action = require(ACTIONS_FOLDER + elem.action).action;
 		}
 	}else {
+		//
 		console.log("unknown configuration: " + JSON.stringify(elem));
 	}
 });
