@@ -113,33 +113,8 @@ var task = function(request, callback){
 			}
 			else {
 			//sprawdzamy czy plik był już przetworzony
-				var paramsCheck = {
-					DomainName: 'borowieckaStatus', //required 
-					ItemName: 'ITEM001', // required 
-					AttributeNames: [
-						key,
-					],
-				};
-				simpledb.getAttributes(paramsCheck, function(err, datacc) {
-				if (err) {
-					console.log(err, err.stack); // an error occurred
-					callback(null, "Nie ma takiego pliku.");
-				}
-				else 
-				{  
-					//poszukuje pliku i sprawdza czy był już przetworzony 
-					if(datacc.Attributes && datacc.Attributes[0].Value == "yes")
-					{
-						console.log('Plik był przetworzony');
-						callback(null, {template: UPLOAD_TEMPLATE, params:{fileName:key.substring(10), bucket:"borowiecka"}});
-					}
-					else
-					{
-						console.log('Brak przetworzonego pliku');
-						
-						//Po poprawnym wrzuceniu pliku i pobraniu jego danych
-						console.log("Plik zostal wrzucony poprawnie i jego dane zostaly odczytane");
-								var sendparms={
+			
+				var sendparms={
 											//MessageBody: bucket, key,
 											MessageBody: "{\"bucket\":\""+bucket+"\",\"key\":\""+key+"\"} ",
 											QueueUrl: linkKolejki,
@@ -164,6 +139,36 @@ var task = function(request, callback){
 												console.log("Skrót dodania do kolejki -> MessageId: "+data2.MessageId);
 											}
 										});
+										
+				var paramsCheck = {
+					DomainName: 'borowieckaStatus', //required 
+					ItemName: 'ITEM001', // required 
+					AttributeNames: [
+						key,
+					],
+				};
+				
+				
+				simpledb.getAttributes(paramsCheck, function(err, datacc) {
+				if (err) {
+					console.log(err, err.stack); // an error occurred
+					callback(null, "Nie ma takiego pliku.");
+				}
+				else 
+				{  
+					//poszukuje pliku i sprawdza czy był już przetworzony 
+					if(datacc.Attributes && datacc.Attributes[0].Value == "yes")
+					{
+						console.log('Plik był przetworzony');
+						callback(null, {template: UPLOAD_TEMPLATE, params:{fileName:key.substring(10), bucket:"borowiecka"}});
+					}
+					else
+					{
+						console.log('Brak przetworzonego pliku');
+						
+						//Po poprawnym wrzuceniu pliku i pobraniu jego danych
+						console.log("Plik zostal wrzucony poprawnie i jego dane zostaly odczytane");
+							
 						//wrzuca do bazy info, że jeszcze nie zmieniono
 						var paramsdb = {
 							Attributes: [
