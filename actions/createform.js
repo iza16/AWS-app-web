@@ -22,6 +22,25 @@ var simpledb = new AWS.SimpleDB();
 
 var task = function(request, callback){
 	
+	
+	var paramsDomain = {
+		DomainName: 'borowieckaStatus'
+	};
+	
+	simpledb.createDomain(paramsDomain, function(err,data) {
+	if(err) console.log(err, err.stack);
+	else	console.log("Baza danych status założona");
+	});
+	
+	var paramsDomainInfo = {
+	DomainName: 'borowieckaLOG'
+	};
+	
+	simpledb.createDomain(paramsDomainInfo, function(err,data) {
+	if(err) console.log(err, err.stack);
+	else	console.log("Baza danych info założona");
+	});
+	
 	//obiekt dzięki któemu będziemy listować plili z bucketu czubak z katalogu toProcess
 	var params = {
 		Bucket: 'borowiecka',
@@ -39,7 +58,7 @@ var task = function(request, callback){
 			//jeżeli nie jest to nazwa bucketu tylko plik
 			if (data.Contents[i].Key != "obrazki/"){
 				//dopisz do listy do wyświetlenia
-				linki.push( {nazwa: data.Contents[i].Key.substring(10)});
+				linki.push( {nazwa: data.Contents[i].Key.substring(8)});
 			}
 			console.log(i);
 		}
@@ -124,7 +143,7 @@ var task = function(request, callback){
 						//wrzuca do bazy info, że jeszcze nie zmieniono
 						var paramsdb = {
 							Attributes: [
-								{ Name: key, Value: 'no', Replace: true}
+								{ Name: key, Value: 'no', Replace: true},
 							],
 							DomainName: "borowieckaStatus", 
 							ItemName: 'ITEM001'
@@ -141,7 +160,7 @@ var task = function(request, callback){
 									Attributes: [
 										{ Name: key, Value: ipAddress, Replace: true}
 									],
-									DomainName: "borowieckaLog", 
+									DomainName: "borowieckaLOG", 
 									ItemName: 'ITEM001'
 								};
 								simpledb.putAttributes(paramsdb2, function(err, datass) {
@@ -180,7 +199,11 @@ var task = function(request, callback){
 												DomainName: 'borowieckaStatus', //required 
 												ItemName: 'ITEM001', // required 
 											};
-											simpledb.getAttributes(paramsCheck1, function(err, data) {
+												var paramsCheck2 = {
+												DomainName: 'borowieckaLOG', //required 
+												ItemName: 'ITEM001', // required 
+											};
+											simpledb.getAttributes(paramsCheck2, function(err, data) {
 												if (err) {
 													console.log(err, err.stack); // an error occurred
 												}
@@ -189,7 +212,7 @@ var task = function(request, callback){
 												}
 											});		
 										});
-									}
+										}
 								});
 							}  
 						});
