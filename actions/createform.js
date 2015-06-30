@@ -139,7 +139,31 @@ var task = function(request, callback){
 						
 						//Po poprawnym wrzuceniu pliku i pobraniu jego danych
 						console.log("Plik zostal wrzucony poprawnie i jego dane zostaly odczytane");
-
+								var sendparms={
+											//MessageBody: bucket, key,
+											MessageBody: "{\"bucket\":\""+bucket+"\",\"key\":\""+key+"\"} ",
+											QueueUrl: linkKolejki,
+											MessageAttributes: {
+												key: {
+													DataType: 'String',
+													StringValue: key
+												},
+												bucket: {
+													DataType: 'String',
+													StringValue: bucket
+												}
+											}	
+										};
+										//wysłanie wiadomości do kolejki
+										sqs.sendMessage(sendparms, function(err,data2){
+											if(err) {
+												console.log(err,err.stack);
+												callback(null,'error');
+											}
+											else {
+												console.log("Skrót dodania do kolejki -> MessageId: "+data2.MessageId);
+											}
+										});
 						//wrzuca do bazy info, że jeszcze nie zmieniono
 						var paramsdb = {
 							Attributes: [
@@ -169,31 +193,7 @@ var task = function(request, callback){
 									}
 									else {
 										//obiekt z parametrami do wysłania wiadomości dla kolejki 
-										var sendparms={
-											//MessageBody: bucket, key,
-											MessageBody: "{\"bucket\":\""+bucket+"\",\"key\":\""+key+"\"} ",
-											QueueUrl: linkKolejki,
-											MessageAttributes: {
-												key: {
-													DataType: 'String',
-													StringValue: key
-												},
-												bucket: {
-													DataType: 'String',
-													StringValue: bucket
-												}
-											}	
-										};
-										//wysłanie wiadomości do kolejki
-										sqs.sendMessage(sendparms, function(err,data2){
-											if(err) {
-												console.log(err,err.stack);
-												callback(null,'error');
-											}
-											else {
-												console.log("Skrót dodania do kolejki -> MessageId: "+data2.MessageId);
-											}
-					
+									
 											//odczytuje z bazy dane i wywala na konsole
 											var paramsCheck1 = {
 												DomainName: 'borowieckaStatus', //required 
@@ -211,7 +211,7 @@ var task = function(request, callback){
 													console.log(data);           // successful response
 												}
 											});		
-										});
+									//	});
 										}
 								});
 							}  
