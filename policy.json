@@ -7,7 +7,7 @@
 		["starts-with", "$x-amz-meta-uploader", ""],
 		["starts-with", "$x-amz-meta-ip", ""],
 		["starts-with", "$uploader", ""],
-		{"success_action_redirect": "borowieckaLB-515527335.us-west-2.elb.amazonaws.com/bucketcr"},
+		{"success_action_redirect": "borowieckaLB-515527335.us-west-2.elb.amazonaws.com:8080"},
     	["content-length-range", 0, 1048576]
     ]   
 }
