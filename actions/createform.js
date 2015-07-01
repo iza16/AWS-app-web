@@ -7,7 +7,7 @@ var POLICY_FILE = "policy.json";
 var INDEX_TEMPLATE = "index.ejs";
 var AWS = require("aws-sdk");
 AWS.config.loadFromPath('./config.json');
-
+//
 var s3 = new AWS.S3();
 var APP_CONFIG_FILE = "./app.json";
 var tablicaKolejki = helpers.readJSONFile(APP_CONFIG_FILE);

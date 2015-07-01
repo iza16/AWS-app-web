@@ -1,7 +1,7 @@
 var util = require("util");
 var moment = require("moment");
 var helpers = require("./helpers");
-
+//
 var ACCESS_KEY_FIELD_NAME = "AWSAccessKeyId";
 var POLICY_FIELD_NAME = "policy";
 var SIGNATURE_FIELD_NAME = "signature";

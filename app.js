@@ -4,7 +4,7 @@ var helpers = require("./helpers");
 var ACTIONS_FOLDER = "./actions/";
 //plik opisujący który plik strony otworzyć po określonej ścieżce
 var ACTIONS_CONFIG_FILE = "actions.json";
-//port na którym działa aplikacja
+
 var PORT = 8080;
 
 //ustawia strony względem patcha
@@ -15,7 +15,7 @@ actionsCofig.forEach(function(elem){
 			elem.action = require(ACTIONS_FOLDER + elem.action).action;
 		}
 	}else {
-		//
+		
 		console.log("unknown configuration: " + JSON.stringify(elem));
 	}
 });
